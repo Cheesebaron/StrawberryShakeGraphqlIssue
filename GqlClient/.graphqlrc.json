@@ -1,0 +1,22 @@
+{
+  "schema": "schema.graphql",
+  "documents": "**/*.graphql",
+  "extensions": {
+    "strawberryShake": {
+      "name": "GraphQlClient",
+      "namespace": "TrackMan.Api.Range.GqlV2",
+      "dependencyInjection": true,
+      "url": "https://dr-cloud-api-dev.trackmangolfdev.com/graphql/",
+      "records": {
+        "inputs": true,
+        "entities": true
+      },
+      "transportProfiles": [
+        {
+          "default": "Http",
+          "subscription": "WebSocket"
+        }
+      ]
+    }
+  }
+}

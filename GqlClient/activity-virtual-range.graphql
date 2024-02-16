@@ -1,0 +1,89 @@
+query ReportVirtualRange($nodeId: ID!) {
+  node(id: $nodeId) {
+    id
+    __typename
+    ... VirtualRangeActivity
+  }
+}
+
+fragment VirtualRangeActivity on VirtualRangeSessionActivity {
+  time
+  kind
+  strokeCount
+  strokes {
+    ... IndoorStroke
+  }
+}
+
+fragment IndoorStroke on Stroke
+{
+  club
+    target {
+      type
+      ... CircleTarget
+      ... RectangleTarget
+    }
+    targetDistance
+    measurement {
+      ... SimulatorMeasurement 
+    }
+}
+
+fragment RectangleTarget on StrokeRectangleTarget 
+{
+  distance
+  length
+  width
+}
+
+fragment CircleTarget on StrokeCircleTarget
+{
+  distance
+  radius
+  hcp
+  tourRadius
+}
+
+fragment SimulatorMeasurement on Measurement
+{
+  id
+  time
+  kind
+
+  carryActual
+  totalActual
+  clubSpeed
+  ballSpeed
+  smashFactor
+  spinRate
+  spinAxis
+  curve
+  attackAngle
+  faceToPath
+  clubPath
+  faceAngle
+  launchAngle
+  launchDirection
+  maxHeight
+  carrySideActual
+  totalSideActual
+  dynamicLoft
+  dynamicLie
+  impactHeight
+  spinLoft
+  swingPlane
+  swingDirection
+  impactOffset
+  landingAngle
+
+  ballTrajectory {
+    kind
+    timeInterval
+    measuredTimeInterval
+    validTimeInterval
+    xFit
+    yFit
+    zFit
+    spinRateFit
+  }
+}
